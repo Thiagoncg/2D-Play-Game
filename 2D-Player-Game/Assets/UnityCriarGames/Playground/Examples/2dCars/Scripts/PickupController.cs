@@ -13,6 +13,7 @@ public class PickupController : MonoBehaviour
 
     // PRIVATE VARIABLES
     private float movement;
+    //private int coin = 0;
 
     private void FixedUpdate() 
     {
@@ -39,12 +40,15 @@ public class PickupController : MonoBehaviour
     }
 
 
+    //--------------------------------------------------------------------
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Coin"))
-        {
-            Debug.Log("Player collected a coin.");
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Coin"))
+    //     {
+    //         Debug.Log("Player collected a coin.");
+    //         coin++;
+    //         Debug.Log("Coin received: " + coin);
+    //     }
+    // }
 }
