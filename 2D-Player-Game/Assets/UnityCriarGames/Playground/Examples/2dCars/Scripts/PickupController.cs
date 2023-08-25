@@ -28,7 +28,6 @@ public class PickupController : MonoBehaviour
     private void GetInputKeyBoard()
     {
         movement = Input.GetAxis("Horizontal");
-        print("movement" + movement);
     }
 
     //----------------------------------------------------------------
@@ -39,4 +38,13 @@ public class PickupController : MonoBehaviour
         carBody.AddTorque(-movement * speedCar * Time.fixedDeltaTime);
     }
 
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            Debug.Log("Player collected a coin.");
+        }
+    }
 }
