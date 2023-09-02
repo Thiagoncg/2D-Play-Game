@@ -10,6 +10,9 @@ TagManager:
   - Ground
   - Pickup
   - Coin
+  - Obstacle
+  - CoinMaster
+  - Gas
   layers:
   - Default
   - TransparentFX

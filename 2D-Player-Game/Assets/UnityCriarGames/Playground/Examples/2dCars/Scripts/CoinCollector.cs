@@ -6,12 +6,10 @@ using System;
 
 public class CoinCollector : MonoBehaviour
 {
-    [SerializeField] private  TMP_Text coinLabel;
+    [SerializeField] private TMP_Text coinLabel;
     private int coin = 0;
-    void Start()
-    {
-        Debug.Log("Funcionando...");
-    }
+    private int coinMaster = 0;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Coin"))
@@ -23,5 +21,19 @@ public class CoinCollector : MonoBehaviour
 
             coinLabel.text = coin.ToString();
         }
+
+        if (other.CompareTag("CoinMaster"))
+        {
+            Debug.Log("Player collected a coin.");
+            coinMaster = coinMaster + 20 ;
+            Debug.Log("Coin received: " + coin);
+            Destroy(other.gameObject);
+
+            coinLabel.text = coinMaster.ToString();
+        }
     }
+
+
+
+
 }

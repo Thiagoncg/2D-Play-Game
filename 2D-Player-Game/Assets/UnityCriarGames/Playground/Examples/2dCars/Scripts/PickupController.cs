@@ -38,17 +38,4 @@ public class PickupController : MonoBehaviour
         tireBackRigdBody.AddTorque(-movement* speed * Time.fixedDeltaTime);
         carBody.AddTorque(-movement * speedCar * Time.fixedDeltaTime);
     }
-
-
-    //--------------------------------------------------------------------
-
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.CompareTag("Coin"))
-    //     {
-    //         Debug.Log("Player collected a coin.");
-    //         coin++;
-    //         Debug.Log("Coin received: " + coin);
-    //     }
-    // }
 }
