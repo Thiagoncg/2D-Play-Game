@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupController : MonoBehaviour
 {
@@ -10,10 +11,19 @@ public class PickupController : MonoBehaviour
     [SerializeField]    private Rigidbody2D tireBackRigdBody;
     [SerializeField]    private float speed;
     [SerializeField]    private float speedCar;
+    [SerializeField]    private Image imageGas;
+    [SerializeField]    private GameObject panelGameOver;
 
-    // PRIVATE VARIABLES
+    //PUBLIC VARIABLES
+    public float gas = 1f;
+    public float gasConsumer = 0.01f;       
+
+    //PRIVATE VARIABLES
     private float movement;
-    //private int coin = 0;
+    private void Start()
+    {
+        panelGameOver.SetActive(false);
+    }
 
     private void FixedUpdate() 
     {
@@ -23,19 +33,38 @@ public class PickupController : MonoBehaviour
     private void Update()
     {
         GetInputKeyBoard();
+        VerificGasolina();
     }
     
     //----------------------------------------------------------------
     private void GetInputKeyBoard()
     {
         movement = Input.GetAxis("Horizontal");
+        imageGas.fillAmount = gas;
     }
 
     //----------------------------------------------------------------
     private void MovementACar()
     {
-        tireFrontRigdBody.AddTorque(-movement * speed * Time.fixedDeltaTime);                                                    
-        tireBackRigdBody.AddTorque(-movement* speed * Time.fixedDeltaTime);
-        carBody.AddTorque(-movement * speedCar * Time.fixedDeltaTime);
+        if (gas>0)
+        {
+            tireFrontRigdBody.AddTorque(-movement * speed * Time.fixedDeltaTime);
+            tireBackRigdBody.AddTorque(-movement * speed * Time.fixedDeltaTime);
+            carBody.AddTorque(-movement * speedCar * Time.fixedDeltaTime);
+        }
+        gas -= gasConsumer * Mathf.Abs(movement) * Time.fixedDeltaTime * 10;
+    }
+
+    private void VerificGasolina()
+    {
+        if (imageGas.fillAmount <= 0)
+        {
+            panelGameOver.SetActive(true);
+        }
     }
 }
+//Prova = 7 Pontos
+// Trabalho em Grupo = 3 pontos
+//Até 4 pessoas.
+// Replica do jogo desenvolvido em sala de aula
+// Plataforma Android. Enviar o APK.
