@@ -13,6 +13,7 @@ public class PickupController : MonoBehaviour
     [SerializeField]    private float speedCar;
     [SerializeField]    private Image imageGas;
     [SerializeField]    private GameObject panelGameOver;
+    [SerializeField]    private int carDrive;
 
     //PUBLIC VARIABLES
     public float gas = 1f;
@@ -53,6 +54,22 @@ public class PickupController : MonoBehaviour
             carBody.AddTorque(-movement * speedCar * Time.fixedDeltaTime);
         }
         gas -= gasConsumer * Mathf.Abs(movement) * Time.fixedDeltaTime * 10;
+    }
+
+    public void MoveCarMObile()
+    {
+        if (gas > 0)
+        {
+            tireFrontRigdBody.AddTorque(-carDrive * speed * Time.fixedDeltaTime);
+            tireBackRigdBody.AddTorque(-carDrive * speed * Time.fixedDeltaTime);
+            carBody.AddTorque(-carDrive * speedCar * Time.fixedDeltaTime);
+        }
+        gas -= gasConsumer * Mathf.Abs(movement) * Time.fixedDeltaTime * 10;
+    }
+
+    private void CacheCarDrive()
+    {
+        carDrive++;
     }
 
     private void VerificGasolina()
